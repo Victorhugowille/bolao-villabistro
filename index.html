@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolão Copa do Mundo - Villa Bistrô</title>
+    <style>
+        :root {
+            --verde-brasil: #009c3b;
+            --amarelo-brasil: #ffdf00;
+            --azul-brasil: #002776;
+            --fundo: #f0f4f8;
+            --texto: #333333;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--verde-brasil);
+            color: var(--texto);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            padding: 40px 30px;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            border-top: 6px solid var(--amarelo-brasil);
+        }
+
+        /* Bandeira do Brasil feita em CSS Puro */
+        .bandeira-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .bandeira {
+            width: 240px;
+            height: 160px;
+            background-color: var(--verde-brasil);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .losango {
+            width: 200px;
+            height: 120px;
+            background-color: var(--amarelo-brasil);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .circulo {
+            width: 80px;
+            height: 80px;
+            background-color: var(--azul-brasil);
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .faixa {
+            position: absolute;
+            top: 45%;
+            left: -10%;
+            width: 120%;
+            height: 8px;
+            background-color: white;
+            transform: rotate(-10deg);
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            color: #444;
+        }
+
+        .placar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+            background-color: var(--fundo);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .time {
+            flex: 1;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            font-weight: 700;
+            color: var(--azul-brasil);
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            border-color: var(--azul-brasil);
+            outline: none;
+        }
+
+        input[type="number"] {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--azul-brasil);
+        }
+
+        button {
+            background-color: var(--amarelo-brasil);
+            color: var(--azul-brasil);
+            border: none;
+            padding: 16px;
+            width: 100%;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #e6c800;
+            transform: scale(1.02);
+        }
+
+        .footer-note {
+            font-size: 12px;
+            color: #888;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        
+        <div class="bandeira-container">
+            <div class="bandeira">
+                <div class="losango">
+                    <div class="circulo">
+                        <div class="faixa"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p>Brasil vs Marrocos! Acerte o placar exato e ganhe uma <strong>Heineken gelada</strong> para acompanhar seu espetinho favorito!</p>
+
+        <form action="https://docs.google.com/forms/d/e/1FAIpQLScUIcmtuawkiuxjVHUceqHhDi5UsT79-bSS_G3jXj4aD5qhpA/formResponse" method="POST" target="_blank">
+            
+            <div class="input-group">
+                <label for="nome">Seu Nome Completo</label>
+                <input type="text" id="nome" name="entry.1890958351" required placeholder="Ex: João Silva">
+            </div>
+
+            <div class="input-group">
+                <label for="telefone">WhatsApp (Para avisarmos se você ganhar)</label>
+                <input type="text" id="telefone" name="entry.1005685839" required placeholder="(00) 00000-0000">
+            </div>
+
+            <div class="placar-container">
+                <div class="time">
+                    <div style="font-size: 40px; margin-bottom: 5px;">🇧🇷</div>
+                    <label style="text-align: center;">Brasil</label>
+                    <input type="number" name="entry.1488160467" min="0" required placeholder="0">
+                </div>
+                
+                <div style="font-weight: bold; font-size: 24px; color: var(--azul-brasil);">X</div>
+                
+                <div class="time">
+                    <div style="font-size: 40px; margin-bottom: 5px;">🇲🇦</div>
+                    <label style="text-align: center;">Marrocos</label>
+                    <input type="number" name="entry.1842756099" min="0" required placeholder="0">
+                </div>
+            </div>
+
+            <button type="submit">Enviar meu Palpite!</button>
+        </form>
+
+        <div class="footer-note">
+            Válido apenas 1 palpite por pessoa. Retire seu prêmio presencialmente no Villa Bistrô.
+        </div>
+    </div>
+
+</body>
+</html>
