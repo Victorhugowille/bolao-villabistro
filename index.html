@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
   <style>
     :root {
       --bg-dark: #071d10;
@@ -24,22 +25,11 @@
       --input-bg: #f8fafc;
       --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.35);
       --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.18);
-      --radius-xl: 24px;
-      --radius-lg: 18px;
-      --radius-md: 12px;
-      --radius-sm: 10px;
       --transition: 0.3s ease;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: "Poppins", sans-serif;
@@ -56,641 +46,187 @@
       overflow-x: hidden;
     }
 
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      inset: auto;
-      width: 340px;
-      height: 340px;
-      border-radius: 50%;
-      filter: blur(60px);
-      opacity: 0.25;
-      pointer-events: none;
-      z-index: 0;
+    body::before, body::after {
+      content: ""; position: fixed; inset: auto;
+      width: 340px; height: 340px; border-radius: 50%;
+      filter: blur(60px); opacity: 0.25; pointer-events: none; z-index: 0;
       animation: floatingGlow 7s ease-in-out infinite;
     }
-
-    body::before {
-      top: -80px;
-      left: -80px;
-      background: var(--green);
-    }
-
-    body::after {
-      bottom: -100px;
-      right: -80px;
-      background: var(--yellow);
-      animation-delay: 1.5s;
-    }
+    body::before { top: -80px; left: -80px; background: var(--green); }
+    body::after { bottom: -100px; right: -80px; background: var(--yellow); animation-delay: 1.5s; }
 
     @keyframes floatingGlow {
-      0%, 100% {
-        transform: translateY(0px) scale(1);
-      }
-      50% {
-        transform: translateY(18px) scale(1.05);
-      }
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(18px) scale(1.05); }
     }
 
-    .page-wrap {
-      width: 100%;
-      max-width: 1180px;
-      position: relative;
-      z-index: 1;
-    }
+    .page-wrap { width: 100%; max-width: 1180px; position: relative; z-index: 1; }
 
     .hero-card {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      display: grid; grid-template-columns: 1.05fr 0.95fr;
+      background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border);
+      border-radius: 30px; overflow: hidden; box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
     }
 
     .left-panel {
-      position: relative;
-      padding: 44px;
-      color: var(--white);
-      text-align: center;
-      background:
-        linear-gradient(160deg, rgba(0, 156, 59, 0.22), rgba(0, 39, 118, 0.18)),
-        linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      position: relative; padding: 44px; color: var(--white); text-align: center;
+      background: linear-gradient(160deg, rgba(0, 156, 59, 0.22), rgba(0, 39, 118, 0.18)),
+                  linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
     }
 
     .left-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 50%, transparent 100%);
-      transform: translateX(-100%);
-      animation: shine 6s linear infinite;
-      pointer-events: none;
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 50%, transparent 100%);
+      transform: translateX(-100%); animation: shine 6s linear infinite; pointer-events: none;
     }
 
-    @keyframes shine {
-      to {
-        transform: translateX(100%);
-      }
-    }
+    @keyframes shine { to { transform: translateX(100%); } }
 
     .left-panel h1 {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 900;
-      line-height: 1;
-      text-transform: uppercase;
-      letter-spacing: -1.5px;
-      margin-bottom: 16px;
+      font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; line-height: 1;
+      text-transform: uppercase; letter-spacing: -1.5px; margin-bottom: 16px;
     }
-
-    .left-panel h1 span {
-      color: var(--yellow);
-      text-shadow: 0 4px 14px rgba(255, 223, 0, 0.22);
-    }
-
-    .lead {
-      font-size: 16px;
-      line-height: 1.75;
-      color: rgba(255,255,255,0.84);
-      max-width: 560px;
-      margin: 0 auto 28px auto;
-    }
-
-    .highlight-prize {
-      color: var(--yellow);
-      font-weight: 700;
-      text-shadow: 0 2px 8px rgba(255, 223, 0, 0.3);
-    }
+    .left-panel h1 span { color: var(--yellow); text-shadow: 0 4px 14px rgba(255, 223, 0, 0.22); }
+    .lead { font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.84); max-width: 560px; margin: 0 auto 28px auto; }
+    .highlight-prize { color: var(--yellow); font-weight: 700; text-shadow: 0 2px 8px rgba(255, 223, 0, 0.3); }
 
     .match-box {
-      margin: 28px 0 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 18px;
-      padding: 22px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 22px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+      margin: 28px 0 24px; display: flex; align-items: center; justify-content: center;
+      gap: 18px; padding: 22px; background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.08); border-radius: 22px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
     }
-
-    .team-preview {
-      text-align: center;
-      min-width: 130px;
-      flex: 1;
-    }
-
-    .team-flag {
-      display: block;
-      margin-bottom: 8px;
-      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2));
-    }
-
-    .team-name {
-      display: block;
-      font-size: 18px;
-      font-weight: 800;
-    }
-
+    .team-preview { text-align: center; min-width: 130px; flex: 1; }
+    .team-flag { display: block; margin-bottom: 8px; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2)); }
+    .team-name { display: block; font-size: 18px; font-weight: 800; }
     .vs-badge {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
+      width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center;
       background: linear-gradient(135deg, rgba(255,223,0,0.2), rgba(255,255,255,0.08));
-      border: 1px solid rgba(255,255,255,0.12);
-      font-weight: 900;
-      font-size: 24px;
-      color: var(--yellow);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border: 1px solid rgba(255,255,255,0.12); font-weight: 900; font-size: 24px;
+      color: var(--yellow); box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
 
     .countdown-box {
-      margin: 24px 0;
-      padding: 20px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 22px;
-      text-align: center;
+      margin: 24px 0; padding: 20px; background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.08); border-radius: 22px; text-align: center;
     }
+    .countdown-title { font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.72); margin-bottom: 12px; }
+    .countdown-timer { display: flex; justify-content: center; gap: 16px; }
+    .countdown-item { text-align: center; }
+    .countdown-item .number { display: block; font-size: 32px; font-weight: 900; color: var(--yellow); line-height: 1; text-shadow: 0 4px 14px rgba(255, 223, 0, 0.22); }
+    .countdown-item .label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.62); margin-top: 4px; }
 
-    .countdown-title {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: rgba(255,255,255,0.72);
-      margin-bottom: 12px;
-    }
-
-    .countdown-timer {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-    }
-
-    .countdown-item {
-      text-align: center;
-    }
-
-    .countdown-item .number {
-      display: block;
-      font-size: 32px;
-      font-weight: 900;
-      color: var(--yellow);
-      line-height: 1;
-      text-shadow: 0 4px 14px rgba(255, 223, 0, 0.22);
-    }
-
-    .countdown-item .label {
-      display: block;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: rgba(255,255,255,0.62);
-      margin-top: 4px;
-    }
-
-    .form-panel {
-      background: #ffffff;
-      padding: 40px 34px;
-      position: relative;
-    }
-
+    .form-panel { background: #ffffff; padding: 40px 34px; position: relative; }
     .form-panel::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 7px;
+      content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 7px;
       background: linear-gradient(90deg, var(--green), var(--yellow), var(--blue));
     }
+    .form-header { margin-bottom: 24px; }
+    .form-header h2 { font-size: 28px; line-height: 1.1; color: #10231a; margin-bottom: 10px; font-weight: 900; }
+    .form-header p { color: var(--text-soft); font-size: 14px; line-height: 1.7; }
+    .form-box { display: flex; flex-direction: column; gap: 18px; }
 
-    .form-header {
-      margin-bottom: 24px;
-    }
-
-    .form-header h2 {
-      font-size: 28px;
-      line-height: 1.1;
-      color: #10231a;
-      margin-bottom: 10px;
-      font-weight: 900;
-    }
-
-    .form-header p {
-      color: var(--text-soft);
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    .form-box {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .input-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .input-group label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.9px;
-      color: #52606d;
-      font-weight: 700;
-    }
-
+    .input-group { display: flex; flex-direction: column; gap: 8px; }
+    .input-group label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.9px; color: #52606d; font-weight: 700; }
     .input-group input {
-      width: 100%;
-      border: 2px solid var(--card-border);
-      background: var(--input-bg);
-      color: var(--text);
-      border-radius: 14px;
-      padding: 15px 16px;
-      font-size: 15px;
-      font-family: "Poppins", sans-serif;
-      transition: var(--transition);
-      outline: none;
+      width: 100%; border: 2px solid var(--card-border); background: var(--input-bg);
+      color: var(--text); border-radius: 14px; padding: 15px 16px; font-size: 15px;
+      font-family: "Poppins", sans-serif; transition: var(--transition); outline: none;
     }
-
-    .input-group input:focus {
-      border-color: rgba(0, 156, 59, 0.7);
-      background: #ffffff;
-      box-shadow: 0 0 0 4px rgba(0, 156, 59, 0.09);
-    }
+    .input-group input:focus { border-color: rgba(0, 156, 59, 0.7); background: #ffffff; box-shadow: 0 0 0 4px rgba(0, 156, 59, 0.09); }
 
     .score-card {
       background: linear-gradient(180deg, #fbfdff 0%, #f5f8fb 100%);
-      border: 1px solid #e8edf2;
-      border-radius: 20px;
-      padding: 18px;
-      box-shadow: var(--shadow-md);
+      border: 1px solid #e8edf2; border-radius: 20px; padding: 18px; box-shadow: var(--shadow-md);
     }
+    .score-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+    .score-title strong { font-size: 15px; color: #16222d; }
+    .score-title span { font-size: 12px; color: var(--text-soft); background: #edf5ef; padding: 6px 10px; border-radius: 999px; font-weight: 600; }
 
-    .score-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .score-title strong {
-      font-size: 15px;
-      color: #16222d;
-    }
-
-    .score-title span {
-      font-size: 12px;
-      color: var(--text-soft);
-      background: #edf5ef;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-weight: 600;
-    }
-
-    .placar-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-    }
-
+    .placar-container { display: flex; align-items: center; justify-content: center; gap: 16px; }
     .time {
-      background: #ffffff;
-      border: 1px solid #e8edf2;
-      border-radius: 18px;
-      padding: 16px 20px;
-      text-align: center;
-      transition: var(--transition);
-      flex: 1;
-      max-width: 160px;
+      background: #ffffff; border: 1px solid #e8edf2; border-radius: 18px;
+      padding: 16px 20px; text-align: center; transition: var(--transition); flex: 1; max-width: 160px;
     }
-
-    .time:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.06);
-    }
-
-    .emoji-bandeira {
-      margin-bottom: 12px;
-      display: block;
-    }
-
+    .time:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(0,0,0,0.06); }
+    .emoji-bandeira { margin-bottom: 12px; display: block; }
     .time input[type="number"] {
-      width: 100%;
-      max-width: 90px;
-      height: 68px;
-      margin: 0 auto;
-      text-align: center;
-      font-size: 30px;
-      font-weight: 900;
-      border-radius: 16px;
-      border: 2px solid #e4ebf2;
-      background: #f8fafc;
-      color: #16222d;
-      appearance: textfield;
-      -moz-appearance: textfield;
+      width: 100%; max-width: 90px; height: 68px; margin: 0 auto; text-align: center;
+      font-size: 30px; font-weight: 900; border-radius: 16px; border: 2px solid #e4ebf2;
+      background: #f8fafc; color: #16222d; appearance: textfield; -moz-appearance: textfield;
     }
-
-    .time input[type="number"]::-webkit-outer-spin-button,
-    .time input[type="number"]::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-
-    .versus {
-      font-size: 22px;
-      font-weight: 900;
-      color: #9aa7b4;
-      padding: 0 6px;
-      flex-shrink: 0;
-    }
+    .time input[type="number"]::-webkit-outer-spin-button, .time input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .versus { font-size: 22px; font-weight: 900; color: #9aa7b4; padding: 0 6px; flex-shrink: 0; }
 
     .tips {
-      margin-top: 18px;
-      padding: 14px 16px;
-      background: #fff8d9;
-      border: 1px solid #f3e59a;
-      border-radius: 14px;
-      color: #615200;
-      font-size: 13px;
-      line-height: 1.6;
+      margin-top: 18px; padding: 14px 16px; background: #fff8d9; border: 1px solid #f3e59a;
+      border-radius: 14px; color: #615200; font-size: 13px; line-height: 1.6;
     }
-
-    .rules {
-      margin-top: 18px;
-      background: #f8fafc;
-      border: 1px solid #e8edf2;
-      border-radius: 16px;
-      padding: 18px;
-    }
-
-    .rules h3 {
-      font-size: 14px;
-      color: #13202c;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-    }
-
-    .rules ul {
-      list-style: none;
-      display: grid;
-      gap: 10px;
-    }
-
-    .rules li {
-      font-size: 13px;
-      color: #546371;
-      line-height: 1.6;
-      padding-left: 22px;
-      position: relative;
-    }
-
-    .rules li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: var(--green);
-      font-size: 18px;
-      line-height: 1;
-    }
+    .rules { margin-top: 18px; background: #f8fafc; border: 1px solid #e8edf2; border-radius: 16px; padding: 18px; }
+    .rules h3 { font-size: 14px; color: #13202c; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.8px; }
+    .rules ul { list-style: none; display: grid; gap: 10px; }
+    .rules li { font-size: 13px; color: #546371; line-height: 1.6; padding-left: 22px; position: relative; }
+    .rules li::before { content: "•"; position: absolute; left: 0; top: 0; color: var(--green); font-size: 18px; line-height: 1; }
 
     .cta-button {
-      margin-top: 6px;
-      width: 100%;
-      border: none;
-      border-radius: 16px;
-      padding: 18px 20px;
-      font-size: 17px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #0c2d18;
-      cursor: pointer;
-      background: linear-gradient(135deg, var(--yellow), var(--yellow-deep));
-      box-shadow:
-        0 14px 30px rgba(255, 223, 0, 0.28),
-        inset 0 1px 0 rgba(255,255,255,0.45);
-      transition: var(--transition);
+      margin-top: 6px; width: 100%; border: none; border-radius: 16px; padding: 18px 20px;
+      font-size: 17px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;
+      color: #0c2d18; cursor: pointer; background: linear-gradient(135deg, var(--yellow), var(--yellow-deep));
+      box-shadow: 0 14px 30px rgba(255, 223, 0, 0.28), inset 0 1px 0 rgba(255,255,255,0.45); transition: var(--transition);
     }
+    .cta-button:hover { transform: translateY(-2px); box-shadow: 0 18px 35px rgba(255, 223, 0, 0.34), inset 0 1px 0 rgba(255,255,255,0.45); }
+    .cta-button:disabled { background: #cccccc; color: #666666; cursor: not-allowed; transform: none; box-shadow: none; }
 
-    .cta-button:hover {
-      transform: translateY(-2px);
-      box-shadow:
-        0 18px 35px rgba(255, 223, 0, 0.34),
-        inset 0 1px 0 rgba(255,255,255,0.45);
-    }
-
-    .cta-button:active {
-      transform: translateY(1px);
-    }
-
-    .footer-note {
-      margin-top: 18px;
-      text-align: center;
-      font-size: 12px;
-      color: #82909d;
-      line-height: 1.6;
-    }
-
-    .final-phrase {
-      margin-top: 16px;
-      text-align: center;
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--green);
-      letter-spacing: 1px;
-    }
-
+    .footer-note { margin-top: 18px; text-align: center; font-size: 12px; color: #82909d; line-height: 1.6; }
+    .final-phrase { margin-top: 16px; text-align: center; font-size: 18px; font-weight: 800; color: var(--green); letter-spacing: 1px; }
     .badge-bottom {
-      margin-top: 16px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      gap: 8px;
-      padding: 12px;
-      border-radius: 14px;
-      background: linear-gradient(90deg, #effaf2, #fffcec);
-      border: 1px solid #e6f1e9;
-      color: #32503f;
-      font-size: 13px;
-      font-weight: 700;
+      margin-top: 16px; display: inline-flex; align-items: center; justify-content: center;
+      width: 100%; gap: 8px; padding: 12px; border-radius: 14px;
+      background: linear-gradient(90deg, #effaf2, #fffcec); border: 1px solid #e6f1e9; color: #32503f; font-size: 13px; font-weight: 700;
     }
 
     /* Success Message */
     .success-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.7);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      backdrop-filter: blur(8px);
+      position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: none;
+      align-items: center; justify-content: center; z-index: 1000; backdrop-filter: blur(8px);
     }
-
-    .success-overlay.active {
-      display: flex;
-    }
-
+    .success-overlay.active { display: flex; }
     .success-card {
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 40px;
-      text-align: center;
-      max-width: 400px;
-      width: 90%;
-      box-shadow: var(--shadow-lg);
-      animation: successPop 0.5s ease-out;
+      background: #ffffff; border-radius: 24px; padding: 40px; text-align: center;
+      max-width: 400px; width: 90%; box-shadow: var(--shadow-lg); animation: successPop 0.5s ease-out;
     }
-
-    @keyframes successPop {
-      0% { transform: scale(0.8); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    .success-icon {
-      font-size: 64px;
-      margin-bottom: 16px;
-    }
-
-    .success-card h3 {
-      font-size: 24px;
-      font-weight: 900;
-      color: #10231a;
-      margin-bottom: 8px;
-    }
-
-    .success-card p {
-      font-size: 15px;
-      color: var(--text-soft);
-      line-height: 1.6;
-      margin-bottom: 24px;
-    }
-
+    @keyframes successPop { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+    .success-icon { font-size: 64px; margin-bottom: 16px; }
+    .success-card h3 { font-size: 24px; font-weight: 900; color: #10231a; margin-bottom: 8px; }
+    .success-card p { font-size: 15px; color: var(--text-soft); line-height: 1.6; margin-bottom: 24px; }
     .success-card .btn-close {
-      background: linear-gradient(135deg, var(--green), var(--green-soft));
-      color: #ffffff;
-      border: none;
-      border-radius: 14px;
-      padding: 14px 28px;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: var(--transition);
+      background: linear-gradient(135deg, var(--green), var(--green-soft)); color: #ffffff;
+      border: none; border-radius: 14px; padding: 14px 28px; font-size: 15px;
+      font-weight: 700; cursor: pointer; transition: var(--transition);
     }
-
-    .success-card .btn-close:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(0, 156, 59, 0.3);
-    }
-
-    /* Confetti Canvas */
-    #confetti-canvas {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 999;
-    }
-
-    /* Bandeira Acima do Título */
-    .top-flag {
-      width: 180px;
-      display: block;
-      margin: 0 auto 24px auto;
-      border-radius: 6px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-    }
+    .success-card .btn-close:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0, 156, 59, 0.3); }
+    #confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 999; }
+    .top-flag { width: 180px; display: block; margin: 0 auto 24px auto; border-radius: 6px; box-shadow: 0 8px 25px rgba(0,0,0,0.25); }
 
     @media (max-width: 980px) {
-      .hero-card {
-        grid-template-columns: 1fr;
-      }
-
-      .left-panel,
-      .form-panel {
-        padding: 32px 24px;
-      }
-
-      .countdown-timer {
-        gap: 12px;
-      }
-
-      .countdown-item .number {
-        font-size: 28px;
-      }
+      .hero-card { grid-template-columns: 1fr; }
+      .left-panel, .form-panel { padding: 32px 24px; }
+      .countdown-timer { gap: 12px; }
+      .countdown-item .number { font-size: 28px; }
     }
-
     @media (max-width: 640px) {
-      body {
-        padding: 16px;
-      }
-
-      .left-panel h1 {
-        font-size: 2.2rem;
-      }
-
-      .match-box {
-        gap: 10px;
-        padding: 16px;
-      }
-
-      .team-preview {
-        min-width: auto;
-      }
-
-      .vs-badge {
-        width: 56px;
-        height: 56px;
-        font-size: 18px;
-      }
-
-      .placar-container {
-        gap: 10px;
-      }
-
-      .time {
-        padding: 12px 14px;
-      }
-
-      .time input[type="number"] {
-        width: 100%;
-        max-width: 70px;
-        height: 56px;
-        font-size: 24px;
-      }
-
-      .versus {
-        font-size: 18px;
-        padding: 0 2px;
-      }
-
-      .countdown-timer {
-        gap: 8px;
-      }
-
-      .countdown-item .number {
-        font-size: 24px;
-      }
-
-      .countdown-item .label {
-        font-size: 10px;
-      }
+      body { padding: 16px; }
+      .left-panel h1 { font-size: 2.2rem; }
+      .match-box { gap: 10px; padding: 16px; }
+      .team-preview { min-width: auto; }
+      .vs-badge { width: 56px; height: 56px; font-size: 18px; }
+      .placar-container { gap: 10px; }
+      .time { padding: 12px 14px; }
+      .time input[type="number"] { width: 100%; max-width: 70px; height: 56px; font-size: 24px; }
+      .versus { font-size: 18px; padding: 0 2px; }
+      .countdown-timer { gap: 8px; }
+      .countdown-item .number { font-size: 24px; }
+      .countdown-item .label { font-size: 10px; }
     }
   </style>
 </head>
@@ -710,20 +246,11 @@
   <main class="page-wrap">
     <section class="hero-card">
       <div class="left-panel">
-        
         <img src="https://flagcdn.com/br.svg" class="top-flag" alt="Bandeira do Brasil">
-
-        <h1>
-  Faça sua aposta !<br>
-  <span>Torça no</span><br>
-  <span>VILLA BISTRÔ</span>
-</h1>
-
+        <h1>Faça sua aposta !<span>Torça no</span><br><span>VILLA BISTRÔ</span></h1>
         <p class="lead">
-          Acerte o placar exato da partida e ganhe
-          <span class="highlight-prize">1 Heineken gelada</span>.
-          Um jeito divertido de entrar no clima do jogo enquanto aproveita
-          nossos espetinhos e o ambiente do Villa Bistrô.
+          Acerte o placar exato da partida e ganhe <span class="highlight-prize">2 espetinhos</span>.
+          Um jeito divertido de entrar no clima do jogo enquanto aproveita nossos espetinhos e o ambiente do Villa Bistrô.
         </p>
 
         <div class="match-box">
@@ -731,34 +258,20 @@
             <span class="team-flag"><img src="https://flagcdn.com/br.svg" width="58" style="border-radius: 4px;" alt="Bandeira do Brasil"></span>
             <span class="team-name">Brasil</span>
           </div>
-
           <div class="vs-badge">VS</div>
-
           <div class="team-preview">
-            <span class="team-flag"><img src="https://flagcdn.com/ma.svg" width="58" style="border-radius: 4px;" alt="Bandeira de Marrocos"></span>
-            <span class="team-name">Marrocos</span>
+            <span class="team-flag"><img src="https://flagcdn.com/ht.svg" width="58" style="border-radius: 4px;" alt="Bandeira do Haiti"></span>
+            <span class="team-name">Haiti</span>
           </div>
         </div>
 
         <div class="countdown-box">
           <div class="countdown-title">⏰ Contagem regressiva para o jogo</div>
           <div class="countdown-timer" id="countdownTimer">
-            <div class="countdown-item">
-              <span class="number" id="days">00</span>
-              <span class="label">Dias</span>
-            </div>
-            <div class="countdown-item">
-              <span class="number" id="hours">00</span>
-              <span class="label">Horas</span>
-            </div>
-            <div class="countdown-item">
-              <span class="number" id="minutes">00</span>
-              <span class="label">Min</span>
-            </div>
-            <div class="countdown-item">
-              <span class="number" id="seconds">00</span>
-              <span class="label">Seg</span>
-            </div>
+            <div class="countdown-item"><span class="number" id="days">00</span><span class="label">Dias</span></div>
+            <div class="countdown-item"><span class="number" id="hours">00</span><span class="label">Horas</span></div>
+            <div class="countdown-item"><span class="number" id="minutes">00</span><span class="label">Min</span></div>
+            <div class="countdown-item"><span class="number" id="seconds">00</span><span class="label">Seg</span></div>
           </div>
         </div>
       </div>
@@ -766,41 +279,18 @@
       <div class="form-panel">
         <div class="form-header">
           <h2>FAÇA SUA APOSTA !</h2>
-          <p>
-            Informe seus dados, escolha o placar do jogo e envie sua participação.
-            O formulário será enviado diretamente para o registro do bolão.
-          </p>
+          <p>Informe seus dados, escolha o placar do jogo e envie sua participação. O formulário será salvo diretamente no nosso sistema.</p>
         </div>
 
-        <form
-          class="form-box"
-          action="https://docs.google.com/forms/d/e/1FAIpQLScUIcmtuawkiuxjVHUceqHhDi5UsT79-bSS_G3jXj4aD5qhpA/formResponse"
-          method="POST"
-          target="_blank"
-          id="bolaoForm"
-        >
+        <form class="form-box" id="bolaoForm">
           <div class="input-group">
             <label for="nome">Nome completo</label>
-            <input
-              type="text"
-              id="nome"
-              name="entry.1890958351"
-              required
-              minlength="3"
-              placeholder="Digite seu nome completo"
-            />
+            <input type="text" id="nome" required minlength="3" placeholder="Digite seu nome completo" />
           </div>
 
           <div class="input-group">
             <label for="telefone">WhatsApp</label>
-            <input
-              type="text"
-              id="telefone"
-              name="entry.1005685839"
-              required
-              maxlength="15"
-              placeholder="(00) 00000-0000"
-            />
+            <input type="text" id="telefone" required maxlength="15" placeholder="(00) 00000-0000" />
           </div>
 
           <div class="score-card">
@@ -812,36 +302,17 @@
             <div class="placar-container">
               <div class="time">
                 <span class="emoji-bandeira"><img src="https://flagcdn.com/br.svg" width="42" style="border-radius: 4px;" alt="Bandeira do Brasil"></span>
-                <input
-                  type="number"
-                  id="placarBrasil"
-                  name="entry.1488160467"
-                  min="0"
-                  max="99"
-                  required
-                  placeholder="0"
-                />
+                <input type="number" id="placarBrasil" min="0" max="99" required placeholder="0" />
               </div>
-
               <div class="versus">X</div>
-
               <div class="time">
-                <span class="emoji-bandeira"><img src="https://flagcdn.com/ma.svg" width="42" style="border-radius: 4px;" alt="Bandeira de Marrocos"></span>
-                <input
-                  type="number"
-                  id="placarMarrocos"
-                  name="entry.1842756099"
-                  min="0"
-                  max="99"
-                  required
-                  placeholder="0"
-                />
+                <span class="emoji-bandeira"><img src="https://flagcdn.com/ht.svg" width="42" style="border-radius: 4px;" alt="Bandeira do Haiti"></span>
+                <input type="number" id="placarHaiti" min="0" max="99" required placeholder="0" />
               </div>
             </div>
 
             <div class="tips">
-              Dica: revise seu nome e WhatsApp antes de enviar. Se o placar estiver correto,
-              esse contato será usado para confirmar o prêmio.
+              Dica: revise seu nome e WhatsApp antes de enviar. Se o placar estiver correto, esse contato será usado para confirmar o prêmio.
             </div>
           </div>
 
@@ -855,189 +326,163 @@
             </ul>
           </div>
 
-          <button type="submit" class="cta-button">Enviar palpite</button>
+          <button type="submit" class="cta-button" id="btnSubmit">Enviar palpite</button>
 
           <div class="badge-bottom">⚽ Participe, torça e aproveite a experiência Villa Bistrô</div>
-
           <div class="final-phrase">"Torça, palpite, comemore."</div>
-
-          <div class="footer-note">
-            Ao enviar, seu palpite será registrado no formulário oficial.
-          </div>
+          <div class="footer-note">Ao enviar, seu palpite será registrado no sistema oficial.</div>
         </form>
       </div>
     </section>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script>
-    // Phone mask
-    const telefoneInput = document.getElementById("telefone");
-    const form = document.getElementById("bolaoForm");
-
-    telefoneInput.addEventListener("input", function (e) {
-      let value = e.target.value.replace(/\D/g, "").slice(0, 11);
-
-      if (value.length > 10) {
-        value = value.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, "($1) $2-$3");
-      } else if (value.length > 6) {
-        value = value.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, "($1) $2-$3");
-      } else if (value.length > 2) {
-        value = value.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
-      } else if (value.length > 0) {
-        value = value.replace(/^(\d*)/, "($1");
-      }
-
-      e.target.value = value;
-    });
-
-    // Form validation and submission
-    form.addEventListener("submit", function (e) {
-      const nome = document.getElementById("nome").value.trim();
-      const telefone = telefoneInput.value.replace(/\D/g, "");
-      const brasil = document.getElementById("placarBrasil").value;
-      const marrocos = document.getElementById("placarMarrocos").value;
-
-      if (nome.length < 3) {
-        e.preventDefault();
-        alert("Digite um nome válido.");
-        return;
-      }
-
-      if (telefone.length < 10 || telefone.length > 11) {
-        e.preventDefault();
-        alert("Digite um WhatsApp válido com DDD.");
-        return;
-      }
-
-      if (brasil === "" || marrocos === "") {
-        e.preventDefault();
-        alert("Preencha o placar dos dois times.");
-        return;
-      }
-
-      // Verifica se o número de telefone já fez um palpite neste navegador
-      if (localStorage.getItem("bolao_telefone_" + telefone)) {
-        e.preventDefault();
-        alert("Este número de WhatsApp já foi utilizado para enviar um palpite.");
-        return;
-      }
-
-      // Show success message and confetti
-      e.preventDefault();
+    document.addEventListener("DOMContentLoaded", function () {
       
-      // Salva o número no armazenamento local para bloquear envios repetidos
-      localStorage.setItem("bolao_telefone_" + telefone, "true");
-
-      showSuccess();
-      fireConfetti();
-
-      // Submit form after a delay
-      setTimeout(() => {
-        form.submit();
-      }, 2000);
-    });
-
-    // Success overlay
-    function showSuccess() {
-      document.getElementById("successOverlay").classList.add("active");
-    }
-
-    function closeSuccess() {
-      document.getElementById("successOverlay").classList.remove("active");
-    }
-
-    // Countdown Timer
-    function updateCountdown() {
-      const gameDate = new Date("2026-06-13T19:00:00-03:00");
-      const now = new Date();
-      const diff = gameDate - now;
-
-      if (diff <= 0) {
-        document.getElementById("days").textContent = "00";
-        document.getElementById("hours").textContent = "00";
-        document.getElementById("minutes").textContent = "00";
-        document.getElementById("seconds").textContent = "00";
-        return;
+      // --- CONFIGURAÇÃO DO SUPABASE ---
+      const supabaseUrl = 'https://wnsjpxsxehudzjpwqkyx.supabase.co';
+      const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Induc2pweHN4ZWh1ZHpqcHdxa3l4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE2NTE3NjMsImV4cCI6MjA5NzIyNzc2M30.8W31UtMewJeq7gGKSwMnCmNf6LxEhNWOoGhjyBdhnio';
+      
+      let supabase;
+      try {
+        supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+      } catch (err) {
+        console.error("Erro ao inicializar Supabase:", err);
       }
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      // --- MÁSCARA DO WHATSAPP ---
+      const telefoneInput = document.getElementById("telefone");
+      telefoneInput.addEventListener("input", function (e) {
+        let v = e.target.value.replace(/\D/g, ""); // Remove tudo que não é dígito
+        v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); // Coloca parênteses
+        v = v.replace(/(\d)(\d{4})$/, "$1-$2");    // Coloca hífen
+        e.target.value = v.substring(0, 15);       // Limita tamanho
+      });
 
-      document.getElementById("days").textContent = String(days).padStart(2, "0");
-      document.getElementById("hours").textContent = String(hours).padStart(2, "0");
-      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
-      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
-    }
+      // --- CRONÔMETRO (Construtor Exato) ---
+      function updateCountdown() {
+        // Ano 2026, Mês 5 (Junho), Dia 19, Hora 21, Min 30, Seg 0
+        const gameDate = new Date(2026, 5, 19, 21, 30, 0).getTime();
+        const now = new Date().getTime();
+        const diff = gameDate - now;
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+        if (diff <= 0) {
+          document.getElementById("days").textContent = "00";
+          document.getElementById("hours").textContent = "00";
+          document.getElementById("minutes").textContent = "00";
+          document.getElementById("seconds").textContent = "00";
+          return;
+        }
 
-    // Confetti Effect
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById("days").textContent = String(days).padStart(2, "0");
+        document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+        document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+        document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+      }
+
+      updateCountdown(); 
+      setInterval(updateCountdown, 1000);
+
+      // --- ENVIO DO FORMULÁRIO ---
+      const form = document.getElementById("bolaoForm");
+      const btnSubmit = document.getElementById("btnSubmit");
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const nome = document.getElementById("nome").value.trim();
+        const telefone = telefoneInput.value.replace(/\D/g, "");
+        const brasil = document.getElementById("placarBrasil").value;
+        const haiti = document.getElementById("placarHaiti").value;
+
+        if (nome.length < 3) return alert("Digite um nome válido.");
+        if (telefone.length < 10) return alert("Digite um WhatsApp válido com DDD.");
+        if (brasil === "" || haiti === "") return alert("Preencha o placar.");
+        if (localStorage.getItem("bolao_telefone_" + telefone)) {
+          return alert("Este número de WhatsApp já enviou um palpite.");
+        }
+
+        btnSubmit.disabled = true;
+        btnSubmit.textContent = "Enviando...";
+
+        try {
+          if(!supabase) throw new Error("A conexão com o banco não foi carregada corretamente.");
+
+          // Requisição Supabase
+          const { error } = await supabase
+            .from('palpites')
+            .insert([{ 
+              nome: nome, 
+              telefone: telefone, 
+              placar_brasil: parseInt(brasil), 
+              placar_haiti: parseInt(haiti) 
+            }]);
+
+          if (error) throw error; // Se der erro de RLS ou Tabela, ele joga pro catch
+
+          // Sucesso!
+          localStorage.setItem("bolao_telefone_" + telefone, "true");
+          showSuccess();
+          fireConfetti();
+          form.reset();
+
+        } catch (err) {
+          console.error(err);
+          // O Alert abaixo vai te mostrar exatamente qual é o erro vindo do banco
+          alert("Erro no envio! Detalhes do banco: " + err.message); 
+        } finally {
+          btnSubmit.disabled = false;
+          btnSubmit.textContent = "Enviar palpite";
+        }
+      });
+
+    });
+
+    // --- SUCESSO E CONFETES ---
+    function showSuccess() { document.getElementById("successOverlay").classList.add("active"); }
+    function closeSuccess() { document.getElementById("successOverlay").classList.remove("active"); }
+
     function fireConfetti() {
       const canvas = document.getElementById("confetti-canvas");
       const ctx = canvas.getContext("2d");
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-
+      canvas.width = window.innerWidth; canvas.height = window.innerHeight;
       const colors = ["#009c3b", "#ffdf00", "#002776", "#ffffff", "#18b45a"];
       const particles = [];
-      const particleCount = 150;
-
-      for (let i = 0; i < particleCount; i++) {
+      for (let i = 0; i < 150; i++) {
         particles.push({
-          x: canvas.width / 2,
-          y: canvas.height / 2,
-          vx: (Math.random() - 0.5) * 20,
-          vy: (Math.random() - 0.5) * 20 - 5,
+          x: canvas.width / 2, y: canvas.height / 2,
+          vx: (Math.random() - 0.5) * 20, vy: (Math.random() - 0.5) * 20 - 5,
           color: colors[Math.floor(Math.random() * colors.length)],
-          size: Math.random() * 8 + 4,
-          rotation: Math.random() * 360,
-          rotationSpeed: (Math.random() - 0.5) * 10,
-          gravity: 0.3,
-          opacity: 1
+          size: Math.random() * 8 + 4, rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 10, gravity: 0.3, opacity: 1
         });
       }
-
       function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        let activeParticles = 0;
-
+        let active = 0;
         particles.forEach(p => {
           if (p.opacity <= 0) return;
-          activeParticles++;
-
-          p.x += p.vx;
-          p.y += p.vy;
-          p.vy += p.gravity;
-          p.rotation += p.rotationSpeed;
-          p.opacity -= 0.008;
-
-          ctx.save();
-          ctx.translate(p.x, p.y);
-          ctx.rotate((p.rotation * Math.PI) / 180);
-          ctx.globalAlpha = p.opacity;
-          ctx.fillStyle = p.color;
-          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
-          ctx.restore();
+          active++; p.x += p.vx; p.y += p.vy; p.vy += p.gravity;
+          p.rotation += p.rotationSpeed; p.opacity -= 0.008;
+          ctx.save(); ctx.translate(p.x, p.y); ctx.rotate((p.rotation * Math.PI) / 180);
+          ctx.globalAlpha = p.opacity; ctx.fillStyle = p.color;
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size); ctx.restore();
         });
-
-        if (activeParticles > 0) {
-          requestAnimationFrame(animate);
-        } else {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
+        if (active > 0) requestAnimationFrame(animate);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
-
       animate();
     }
-
-    // Resize canvas on window resize
     window.addEventListener("resize", () => {
       const canvas = document.getElementById("confetti-canvas");
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth; canvas.height = window.innerHeight;
     });
   </script>
 </body>
