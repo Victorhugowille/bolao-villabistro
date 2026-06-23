@@ -249,8 +249,8 @@
         <img src="https://flagcdn.com/br.svg" class="top-flag" alt="Bandeira do Brasil">
         <h1>Faça sua aposta !<span>Torça no</span><br><span>VILLA BISTRÔ</span></h1>
         <p class="lead">
-          Acerte o placar exato da partida e ganhe <span class="highlight-prize">2 espetinhos</span>.
-          Um jeito divertido de entrar no clima do jogo enquanto aproveita nossos espetinhos e o ambiente do Villa Bistrô.
+          Acerte o placar exato da partida e ganhe <span class="highlight-prize">Uma Cuba</span>.
+          Um jeito divertido de entrar no clima do jogo enquanto aproveita nossa bebida e o ambiente do Villa Bistrô.
         </p>
 
         <div class="match-box">
@@ -260,8 +260,8 @@
           </div>
           <div class="vs-badge">VS</div>
           <div class="team-preview">
-            <span class="team-flag"><img src="https://flagcdn.com/ht.svg" width="58" style="border-radius: 4px;" alt="Bandeira do Haiti"></span>
-            <span class="team-name">Haiti</span>
+            <span class="team-flag"><img src="https://flagcdn.com/gb-sct.svg" width="58" style="border-radius: 4px;" alt="Bandeira da Escócia"></span>
+            <span class="team-name">Escócia</span>
           </div>
         </div>
 
@@ -306,8 +306,8 @@
               </div>
               <div class="versus">X</div>
               <div class="time">
-                <span class="emoji-bandeira"><img src="https://flagcdn.com/ht.svg" width="42" style="border-radius: 4px;" alt="Bandeira do Haiti"></span>
-                <input type="number" id="placarHaiti" min="0" max="99" required placeholder="0" />
+                <span class="emoji-bandeira"><img src="https://flagcdn.com/gb-sct.svg" width="42" style="border-radius: 4px;" alt="Bandeira da Escócia"></span>
+                <input type="number" id="placarEscocia" min="0" max="99" required placeholder="0" />
               </div>
             </div>
 
@@ -361,10 +361,10 @@
         e.target.value = v.substring(0, 15);       // Limita tamanho
       });
 
-      // --- CRONÔMETRO (Construtor Exato) ---
+      // --- CRONÔMETRO (Ajustado para 19h) ---
       function updateCountdown() {
-        // Ano 2026, Mês 5 (Junho), Dia 19, Hora 21, Min 30, Seg 0
-        const gameDate = new Date(2026, 5, 19, 21, 30, 0).getTime();
+        // Ano 2026, Mês 5 (Junho), Dia 24 (Quarta-feira), Hora 19, Min 0, Seg 0
+        const gameDate = new Date(2026, 5, 24, 19, 0, 0).getTime();
         const now = new Date().getTime();
         const diff = gameDate - now;
 
@@ -400,11 +400,11 @@
         const nome = document.getElementById("nome").value.trim();
         const telefone = telefoneInput.value.replace(/\D/g, "");
         const brasil = document.getElementById("placarBrasil").value;
-        const haiti = document.getElementById("placarHaiti").value;
+        const escocia = document.getElementById("placarEscocia").value;
 
         if (nome.length < 3) return alert("Digite um nome válido.");
         if (telefone.length < 10) return alert("Digite um WhatsApp válido com DDD.");
-        if (brasil === "" || haiti === "") return alert("Preencha o placar.");
+        if (brasil === "" || escocia === "") return alert("Preencha o placar.");
         if (localStorage.getItem("bolao_telefone_" + telefone)) {
           return alert("Este número de WhatsApp já enviou um palpite.");
         }
@@ -415,17 +415,17 @@
         try {
           if(!supabase) throw new Error("A conexão com o banco não foi carregada corretamente.");
 
-          // Requisição Supabase
+          // Requisição ajustada para inserir nas colunas 'placar_brasil' e 'placar_escocia'
           const { error } = await supabase
             .from('palpites')
             .insert([{ 
               nome: nome, 
               telefone: telefone, 
               placar_brasil: parseInt(brasil), 
-              placar_haiti: parseInt(haiti) 
+              placar_escocia: parseInt(escocia) 
             }]);
 
-          if (error) throw error; // Se der erro de RLS ou Tabela, ele joga pro catch
+          if (error) throw error; 
 
           // Sucesso!
           localStorage.setItem("bolao_telefone_" + telefone, "true");
@@ -435,7 +435,6 @@
 
         } catch (err) {
           console.error(err);
-          // O Alert abaixo vai te mostrar exatamente qual é o erro vindo do banco
           alert("Erro no envio! Detalhes do banco: " + err.message); 
         } finally {
           btnSubmit.disabled = false;
