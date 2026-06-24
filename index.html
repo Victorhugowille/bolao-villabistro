@@ -319,7 +319,7 @@
           <div class="rules">
             <h3>Regras do bolão</h3>
             <ul>
-              <li>Válido 1 palpite por pessoa.</li>
+              <li>Válido 1 palpite por pessoa. (Apenas o primeiro palpite enviado será considerado para a premiação)</li>
               <li>O prêmio será entregue apenas para quem acertar o placar exato.</li>
               <li>Todas as pessoas que acertarem o placar exato terão direito de resgatar o prêmio.</li>
               <li>Retirada do prêmio presencialmente no Villa Bistrô.</li>
@@ -355,15 +355,14 @@
       // --- MÁSCARA DO WHATSAPP ---
       const telefoneInput = document.getElementById("telefone");
       telefoneInput.addEventListener("input", function (e) {
-        let v = e.target.value.replace(/\D/g, ""); // Remove tudo que não é dígito
-        v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); // Coloca parênteses
-        v = v.replace(/(\d)(\d{4})$/, "$1-$2");    // Coloca hífen
-        e.target.value = v.substring(0, 15);       // Limita tamanho
+        let v = e.target.value.replace(/\D/g, ""); 
+        v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); 
+        v = v.replace(/(\d)(\d{4})$/, "$1-$2");    
+        e.target.value = v.substring(0, 15);       
       });
 
-      // --- CRONÔMETRO (Ajustado para 19h) ---
+      // --- CRONÔMETRO ---
       function updateCountdown() {
-        // Ano 2026, Mês 5 (Junho), Dia 24 (Quarta-feira), Hora 19, Min 0, Seg 0
         const gameDate = new Date(2026, 5, 24, 19, 0, 0).getTime();
         const now = new Date().getTime();
         const diff = gameDate - now;
@@ -405,9 +404,8 @@
         if (nome.length < 3) return alert("Digite um nome válido.");
         if (telefone.length < 10) return alert("Digite um WhatsApp válido com DDD.");
         if (brasil === "" || escocia === "") return alert("Preencha o placar.");
-        if (localStorage.getItem("bolao_telefone_" + telefone)) {
-          return alert("Este número de WhatsApp já enviou um palpite.");
-        }
+
+        // TRAVA REMOVIDA: Agora as pessoas podem enviar vários palpites sem o bloqueio do localStorage
 
         btnSubmit.disabled = true;
         btnSubmit.textContent = "Enviando...";
@@ -415,7 +413,6 @@
         try {
           if(!supabase) throw new Error("A conexão com o banco não foi carregada corretamente.");
 
-          // Requisição ajustada para inserir nas colunas 'placar_brasil' e 'placar_escocia'
           const { error } = await supabase
             .from('palpites')
             .insert([{ 
@@ -428,7 +425,6 @@
           if (error) throw error; 
 
           // Sucesso!
-          localStorage.setItem("bolao_telefone_" + telefone, "true");
           showSuccess();
           fireConfetti();
           form.reset();
